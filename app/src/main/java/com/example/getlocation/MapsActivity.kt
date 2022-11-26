@@ -27,6 +27,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var lastLocation: Location
+    private var currentLocationIsSet: Boolean = false
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     private lateinit var locationRequest: LocationRequest
@@ -55,8 +56,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 super.onLocationResult(p0)
 
                 lastLocation = p0.lastLocation!!
-                val currLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-                mMap.addMarker(MarkerOptions().position(currLatLng).title("you are here"))
+                if(!currentLocationIsSet) {
+                    val currLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
+                    mMap.addMarker(MarkerOptions().position(currLatLng).title("you are here"))
+                    currentLocationIsSet = true
+                }
             }
         }
 
@@ -83,7 +87,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(iulius))
     }
 
     override fun onMarkerClick(p0: Marker) = false
