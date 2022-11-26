@@ -1,18 +1,17 @@
 package com.example.getlocation
 
 import android.app.Activity
+import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
-import android.preference.PreferenceManager.OnActivityResultListener
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.getlocation.databinding.ActivityMapsBinding
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.Button
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
@@ -32,6 +31,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
     private lateinit var locationCallback: LocationCallback
     private lateinit var locationRequest: LocationRequest
     private var locationUpdateState = false
+
+    public lateinit var currLatLng: LatLng
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -56,22 +57,38 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 super.onLocationResult(p0)
 
                 lastLocation = p0.lastLocation!!
-                if(!currentLocationIsSet) {
-                    val currLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-                    mMap.addMarker(MarkerOptions().position(currLatLng).title("you are here"))
-                    currentLocationIsSet = true
+
+                //add maker button
+                val addMarkerButton = findViewById<Button>(R.id.addMrkBtn)
+                addMarkerButton.setOnClickListener {
+                    if(!currentLocationIsSet) {
+                        currLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
+
+                        currentLocationIsSet = true
+                        mMap.addMarker(MarkerOptions().position(currLatLng). title("trash is here"))
+                    }
                 }
+
+                val cleanButton = findViewById<Button>(R.id.cleanBttn)
+//                cleanButton.setOnClickListener {
+//                    if(currentLocationIsSet) {
+//                        currLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
+//
+//                        currentLocationIsSet = false
+//
+//                    }
+//                }
             }
         }
 
         createLocationRequest()
 
-        val buttonClick = findViewById<Button>(R.id.click2)
-        buttonClick.setOnClickListener {
+        //profile button functionality
+        val profileButton = findViewById<Button>(R.id.profileBtn)
+        profileButton.setOnClickListener {
             val intent = Intent(this, Profile::class.java)
             startActivity(intent)
         }
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -84,10 +101,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         mMap.addMarker(MarkerOptions().position(iulius).title("Gunoi la iulius"))
 
         setUpMap()
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(iulius))
     }
 
     override fun onMarkerClick(p0: Marker) = false
@@ -160,7 +173,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         }
     }
 
-     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if (resultCode == Activity.RESULT_OK) {
