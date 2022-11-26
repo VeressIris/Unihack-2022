@@ -5,49 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile">
-
-
-  <Button
-      android:id="@+id/click3"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentTop="true"
-      android:layout_alignParentEnd="true"
-      android:layout_margin="5dp"
-      android:background="#359c5e"
-      android:padding="8dp"
-      android:text="Click3"
-      android:textColor="#9C27B0"
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/my_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="?attr/colorPrimary"
+      android:elevation="4dp"
+      android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+      app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+      app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-
-  <TextView
-      android:id="@+id/textView4"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="2dp"
-      android:layout_marginBottom="54dp"
-      android:text="TextView"
-      app:layout_constraintBottom_toTopOf="@+id/textView5"
-      app:layout_constraintEnd_toEndOf="@+id/textView5" />
-
-  <TextView
-      android:id="@+id/textView5"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="245dp"
-      android:layout_marginEnd="170dp"
-      android:text="TextView"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      />
+
+<!--  <Button-->
+<!--      android:id="@+id/btn_back"-->
+<!--      android:layout_width="63dp"-->
+<!--      android:layout_height="46dp"-->
+<!--      android:layout_alignParentTop="true"-->
+<!--      android:layout_alignParentEnd="true"-->
+<!--      android:layout_margin="5dp"-->
+<!--      android:layout_marginStart="28dp"-->
+<!--      android:layout_marginTop="48dp"-->
+<!--      android:background="#E91E63"-->
+<!--      android:padding="2dp"-->
+<!--      android:text="b"-->
+<!--      android:textColor="#9C27B0"-->
+<!--      android:textSize="20sp"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toTopOf="parent" />-->
+
+  <androidx.cardview.widget.CardView
+      android:id="@+id/profile_image_card"
+      android:layout_width="150dp"
+      android:layout_height="150dp"
+      app:cardCornerRadius="250dp"
+      android:layout_gravity="center"
+      app:layout_constraintTop_toBottomOf="@id/my_toolbar"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginTop="50dp">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/profile"
+        android:scaleType="centerCrop"
+      />
+  </androidx.cardview.widget.CardView>
 
   <TextView
-      android:id="@+id/textView6"
+      android:id="@+id/txt_name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="53dp"
-      android:text="TextView"
-      app:layout_constraintStart_toStartOf="@+id/textView5"
-      app:layout_constraintTop_toBottomOf="@+id/textView5" />
+      android:layout_marginTop="50dp"
+      android:gravity="center_horizontal"
+      android:text="Nume Prenume"
+      android:textSize="30sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/profile_image_card" />
+
+  <TextView
+      android:id="@+id/textView2"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="16dp"
+      android:gravity="left"
+      android:paddingLeft="10dp"
+      android:text="Rewards"
+      android:textSize="30sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/txt_name" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
