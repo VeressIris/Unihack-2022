@@ -6,6 +6,7 @@ import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -26,13 +27,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var lastLocation: Location
-    private var currentLocationIsSet: Boolean = false
+    var currentLocationIsSet: Boolean = false
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     private lateinit var locationRequest: LocationRequest
     private var locationUpdateState = false
+    lateinit var currLatLng: LatLng
 
-    public lateinit var currLatLng: LatLng
+    var treeLevel = 1
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -58,7 +60,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
 
                 lastLocation = p0.lastLocation!!
 
-                //add maker button
+                //ADD MARKER BUTTON
                 val addMarkerButton = findViewById<Button>(R.id.addMrkBtn)
                 addMarkerButton.setOnClickListener {
                     if(!currentLocationIsSet) {
@@ -66,18 +68,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
 
                         currentLocationIsSet = true
                         mMap.addMarker(MarkerOptions().position(currLatLng). title("trash is here"))
+
+                        treeLevel++
+                       // Log.i("TREE LEVEL: ", treeLevel.toString())
                     }
                 }
-
-                val cleanButton = findViewById<Button>(R.id.cleanBttn)
-//                cleanButton.setOnClickListener {
-//                    if(currentLocationIsSet) {
-//                        currLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-//
-//                        currentLocationIsSet = false
-//
-//                    }
-//                }
             }
         }
 
@@ -97,13 +92,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         mMap.getUiSettings().setZoomControlsEnabled(true)
         mMap.setOnMarkerClickListener(this)
 
-        val iulius = LatLng(45.764884608477566, 21.22844389834543)
-        mMap.addMarker(MarkerOptions().position(iulius).title("Gunoi la iulius"))
+        setUpDefaultLocations()
 
         setUpMap()
     }
 
+    private fun setUpDefaultLocations() {
+        val iulius = LatLng(45.764884608477566, 21.22844389834543)
+        mMap.addMarker(MarkerOptions().position(iulius).title("Gunoi la iulius"))
+    }
+
     override fun onMarkerClick(p0: Marker) = false
+
+//    override fun onMarkerClick(Marker: Marker): Boolean {
+//        Marker.remove()
+//        currentLocationIsSet = false
+//
+//        return false
+//    }
 
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(
@@ -194,6 +200,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
             startLocationUpdates()
         }
     }
-
 }
 

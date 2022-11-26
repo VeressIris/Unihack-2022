@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Profile">
 
-
   <Button
-      android:id="@+id/click3"
+      android:id="@+id/backBttn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentTop="true"
@@ -16,38 +15,44 @@
       android:layout_margin="5dp"
       android:background="#359c5e"
       android:padding="8dp"
-      android:text="Click3"
-      android:textColor="#9C27B0"
+      android:text="Back"
+      android:textColor="#FFFFFF"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
-
   <TextView
-      android:id="@+id/textView4"
+      android:id="@+id/profileTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginEnd="2dp"
-      android:layout_marginBottom="54dp"
-      android:text="TextView"
-      app:layout_constraintBottom_toTopOf="@+id/textView5"
-      app:layout_constraintEnd_toEndOf="@+id/textView5" />
-
-  <TextView
-      android:id="@+id/textView5"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="245dp"
-      android:layout_marginEnd="170dp"
-      android:text="TextView"
+      android:text="Garden:"
+      android:textSize="20sp"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.01999998" />
 
-  <TextView
-      android:id="@+id/textView6"
+  <ImageView
+      android:id="@+id/treeRender"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="53dp"
-      android:text="TextView"
-      app:layout_constraintStart_toStartOf="@+id/textView5"
-      app:layout_constraintTop_toBottomOf="@+id/textView5" />
+      android:src="@drawable/tree1"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/profileTitle"
+      tools:srcCompat="@tools:sample/avatars"
+      android:contentDescription="Tree image renderer" />
+
+  <TextView
+      android:id="@+id/treeLevel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/treeRender"
+      app:layout_constraintVertical_bias="0.01999998" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
