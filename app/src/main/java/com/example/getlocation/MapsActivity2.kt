@@ -1,9 +1,7 @@
 package com.example.getlocation
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -11,29 +9,26 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.getlocation.databinding.ActivityMapsBinding
+import com.example.getlocation.databinding.ActivityMaps2Binding
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityMapsBinding
+    private lateinit var binding: ActivityMaps2Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_maps2)
 
-        binding = ActivityMapsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-
-        val buttonClick = findViewById<Button>(R.id.click2)
-        buttonClick.setOnClickListener {
-            val intent = Intent(this, Profile::class.java)
-            startActivity(intent)
-        }
+//
+//        binding = ActivityMaps2Binding.inflate(layoutInflater)
+//        setContentView(binding.root)
+//
+//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+//
+//        val mapFragment = supportFragmentManager
+//            .findFragmentById(R.id.location_map) as SupportMapFragment
+//        mapFragment.getMapAsync(this)
     }
 
     /**
