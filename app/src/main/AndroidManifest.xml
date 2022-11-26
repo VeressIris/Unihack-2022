@@ -19,13 +19,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -41,10 +36,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />
 
-        <activity
-            android:name=".MapsActivity2"
-            android:exported="false"
-            android:label="Merge" />
+
         <activity
             android:name=".MapsActivity"
             android:exported="true"
