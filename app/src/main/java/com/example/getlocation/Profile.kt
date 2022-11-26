@@ -3,6 +3,10 @@ package com.example.getlocation
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
 
 class Profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +27,10 @@ class Profile : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        val buttonClick = findViewById<Button>(R.id.click3)
+        buttonClick.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
         }
     }
 
