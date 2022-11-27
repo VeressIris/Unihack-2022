@@ -5,9 +5,11 @@ import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.getlocation.databinding.ActivityMapsBinding
@@ -23,6 +25,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.StandardOpenOption
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListener {
 
@@ -35,8 +39,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
     private lateinit var locationRequest: LocationRequest
     private var locationUpdateState = false
     lateinit var currLatLng: LatLng
-
-//    var treeLevel = 1
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -57,6 +59,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         locationCallback = object : LocationCallback() {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onLocationResult(p0: LocationResult) {
                 super.onLocationResult(p0)
 
@@ -69,7 +72,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                         currLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
 
                         currentLocationIsSet = true
-                        mMap.addMarker(MarkerOptions().position(currLatLng). title("trash is here"))!!
+                        mMap.addMarker(MarkerOptions().position(currLatLng))!!
 //                        File("lines.txt").appendText("6\n")
                     }
                 }

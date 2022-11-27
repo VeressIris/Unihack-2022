@@ -15,7 +15,7 @@ class Profile : AppCompatActivity() {
 
         val levelText = findViewById<TextView>(R.id.treeLevel)
 //        levelText.text = "Tree level: " + countLines().toString()
-        levelText.text = "Tree level: 1 (MORE LEVELS IN FULL VERSION)"
+        levelText.text = "Tree level: 1"
 
         val buttonClick = findViewById<Button>(R.id.backBttn)
         buttonClick.setOnClickListener {
@@ -30,9 +30,9 @@ class Profile : AppCompatActivity() {
 //            var lvl = countLines()
 //            val treeImageView = findViewById<ImageView>(R.id.treeRender)
 //
-//            if(lvl == 5){
-//                //clear file
-//            }
+////            if(lvl == 5){
+////                //clear file
+////            }
 //
 //            when(lvl){
 //                1 -> treeImageView.setBackgroundResource(R.drawable.tree1)
@@ -41,7 +41,7 @@ class Profile : AppCompatActivity() {
 //                4 -> treeImageView.setBackgroundResource(R.drawable.tree4)
 //            }
 //        }
-
+//
 //        fun countLines(): Int{
 //            var k = 0
 //            File ("lines.txt").readLines().forEach(){
@@ -52,4 +52,5 @@ class Profile : AppCompatActivity() {
 //
 //            return k
 //        }
+
 }
