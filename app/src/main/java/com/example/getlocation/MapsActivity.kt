@@ -18,9 +18,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import java.io.File
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListener {
 
@@ -34,7 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
     private var locationUpdateState = false
     lateinit var currLatLng: LatLng
 
-    var treeLevel = 1
+//    var treeLevel = 1
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -67,10 +69,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                         currLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
 
                         currentLocationIsSet = true
-                        mMap.addMarker(MarkerOptions().position(currLatLng). title("trash is here"))
-
-                        treeLevel++
-                       // Log.i("TREE LEVEL: ", treeLevel.toString())
+                        mMap.addMarker(MarkerOptions().position(currLatLng). title("trash is here"))!!
+//                        File("lines.txt").appendText("6\n")
                     }
                 }
             }
@@ -99,17 +99,29 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
 
     private fun setUpDefaultLocations() {
         val iulius = LatLng(45.764884608477566, 21.22844389834543)
-        mMap.addMarker(MarkerOptions().position(iulius).title("Gunoi la iulius"))
+        mMap.addMarker(MarkerOptions().position(iulius))
+        val bucuresti = LatLng(44.44660726939107, 26.103281741223856)
+        mMap.addMarker(MarkerOptions().position(bucuresti))
+        val brasov = LatLng(45.65177291317424, 25.644725649205967)
+        mMap.addMarker(MarkerOptions().position(brasov))
+        val iasi = LatLng(47.153032895544555, 27.50326399747228)
+        mMap.addMarker(MarkerOptions().position(iasi))
+        val saturn = LatLng(43.82972116534456, 28.587022592394387)
+        mMap.addMarker(MarkerOptions().position(saturn))
+        val slatina = LatLng(44.4274903899653, 24.374280735056658)
+        mMap.addMarker(MarkerOptions().position(slatina))
     }
 
-    override fun onMarkerClick(p0: Marker) = false
+//    override fun onMarkerClick(p0: Marker) = false
 
-//    override fun onMarkerClick(Marker: Marker): Boolean {
-//        Marker.remove()
-//        currentLocationIsSet = false
-//
-//        return false
-//    }
+    override fun onMarkerClick(Marker: Marker): Boolean {
+        currentLocationIsSet = false
+
+        Marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+        Marker.title = "Location cleaned!"
+
+        return false
+    }
 
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(

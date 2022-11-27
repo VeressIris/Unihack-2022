@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Profile">
 
-  <Button
+  <androidx.appcompat.widget.AppCompatButton
       android:id="@+id/backBttn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentTop="true"
       android:layout_alignParentEnd="true"
       android:layout_margin="5dp"
-      android:background="#359c5e"
+      android:background="#FA5CC260"
+      android:fontFamily="@font/cabin_semibold"
       android:padding="8dp"
       android:text="Back"
       android:textColor="#FFFFFF"
@@ -24,8 +25,9 @@
       android:id="@+id/profileTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Garden:"
-      android:textSize="20sp"
+      android:fontFamily="@font/cabin_semibold"
+      android:text="GARDEN:"
+      android:textSize="22sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -34,25 +36,42 @@
 
   <ImageView
       android:id="@+id/treeRender"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="84dp"
+      android:layout_height="89dp"
+      android:contentDescription="Tree image renderer"
       android:src="@drawable/tree1"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="@+id/profileTitle"
-      tools:srcCompat="@tools:sample/avatars"
-      android:contentDescription="Tree image renderer" />
+      tools:srcCompat="@tools:sample/avatars" />
 
   <TextView
       android:id="@+id/treeLevel"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp"
+      android:fontFamily="@font/cabin_semibold"
+      android:textAlignment="center"
+      android:textSize="18sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/treeRender"
       app:layout_constraintVertical_bias="0.01999998" />
+
+  <ImageView
+      android:id="@+id/logo"
+      android:layout_width="233dp"
+      android:layout_height="246dp"
+      android:layout_marginStart="214dp"
+      android:layout_marginTop="115dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.222"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/treeRender"
+      app:layout_constraintVertical_bias="0.255"
+      app:srcCompat="@drawable/ecorise_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
