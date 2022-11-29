@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">getlocation</string>
-    <string name="title_activity_maps">MapsActivity</string>
-    <string name="title_activity_maps2">MapsActivity2</string>
+    <string name="app_name">Ecorise</string>
+    <string name="title_activity_maps">Ecorise</string>
 </resources>
